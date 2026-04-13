@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arruma Meu POP — Temporada 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --laranja: #F4500A;
+    --laranja-escuro: #C43A00;
+    --laranja-claro: #FF7940;
+    --preto: #0E0C0A;
+    --cinza-escuro: #1A1714;
+    --cinza-medio: #2E2A26;
+    --cinza-borda: #3A3530;
+    --cinza-texto: #9A9087;
+    --branco: #FAF7F2;
+    --branco-suave: #F0EDE8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--preto); color: var(--branco); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 6vw;
+    background: rgba(14,12,10,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(244,80,10,0.15);
+  }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo img { height: 52px; width: auto; }
+  nav a.btn-nav { font-size: 14px; font-weight: 500; background: var(--laranja); color: var(--branco); padding: 10px 22px; border-radius: 6px; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+  nav a.btn-nav:hover { background: var(--laranja-claro); }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 6vw 80px; position: relative; overflow: hidden; }
+  .hero-grid-bg { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(244,80,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(244,80,10,0.06) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-glow { position: absolute; top: -200px; right: -200px; z-index: 0; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(244,80,10,0.18) 0%, transparent 70%); }
+  .hero-logo-big { position: relative; z-index: 1; margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+  .hero-logo-big img { height: 180px; width: auto; max-width: 90vw; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(244,80,10,0.12); border: 1px solid rgba(244,80,10,0.3); color: var(--laranja-claro); font-size: 13px; font-weight: 500; padding: 6px 16px; border-radius: 100px; margin-bottom: 28px; width: fit-content; animation: fadeUp 0.6s ease 0.05s both; }
+  .hero-tag::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--laranja); animation: pulse 1.8s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+  h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(38px, 6vw, 76px); line-height: 1.0; letter-spacing: -0.03em; color: var(--branco); position: relative; z-index: 1; max-width: 780px; animation: fadeUp 0.7s ease 0.1s both; }
+  h1 em { font-style: normal; color: var(--laranja); display: block; }
+  .hero-sub { font-size: clamp(16px, 2.2vw, 20px); color: var(--cinza-texto); font-weight: 300; line-height: 1.6; max-width: 560px; margin-top: 28px; position: relative; z-index: 1; animation: fadeUp 0.7s ease 0.2s both; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 44px; position: relative; z-index: 1; animation: fadeUp 0.7s ease 0.3s both; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--laranja); color: var(--branco); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; padding: 16px 32px; border-radius: 8px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: var(--laranja-claro); transform: translateY(-2px); }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--branco-suave); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 400; padding: 16px 28px; border-radius: 8px; text-decoration: none; border: 1px solid var(--cinza-borda); cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+  .btn-secondary:hover { border-color: var(--laranja); color: var(--laranja-claro); }
+  .hero-stats { display: flex; gap: 48px; flex-wrap: wrap; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--cinza-borda); position: relative; z-index: 1; animation: fadeUp 0.7s ease 0.4s both; }
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 700; color: var(--branco); letter-spacing: -0.02em; display: block; }
+  .stat-num span { color: var(--laranja); }
+  .stat-label { font-size: 13px; color: var(--cinza-texto); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+  /* SEÇÕES */
+  section { padding: 100px 6vw; }
+  .section-tag { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--laranja); margin-bottom: 16px; }
+  h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.025em; color: var(--branco); margin-bottom: 20px; }
+  h2 span { color: var(--laranja); }
+  .section-sub { font-size: 18px; color: var(--cinza-texto); line-height: 1.65; font-weight: 300; max-width: 600px; margin-bottom: 60px; }
+
+  /* SOBRE */
+  #sobre { background: var(--cinza-escuro); }
+  .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .sobre-texto p { font-size: 17px; color: #C8C0B8; line-height: 1.75; font-weight: 300; margin-bottom: 20px; }
+  .sobre-texto p strong { color: var(--branco); font-weight: 500; }
+  .parceiros-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cinza-texto); margin-bottom: 16px; }
+  .parceiros-list { display: flex; gap: 10px; flex-wrap: wrap; }
+  .parceiro-chip { font-size: 13px; font-weight: 400; padding: 7px 16px; border-radius: 100px; border: 1px solid var(--cinza-borda); color: #B0A89E; }
+  .sobre-destaques { display: flex; flex-direction: column; gap: 16px; }
+  .destaque-card { background: var(--cinza-medio); border: 1px solid var(--cinza-borda); border-radius: 12px; padding: 24px 28px; }
+  .destaque-card .icon { width: 40px; height: 40px; background: rgba(244,80,10,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+  .destaque-card .icon svg { width: 20px; height: 20px; stroke: var(--laranja); fill: none; stroke-width: 1.8; }
+  .destaque-card h3 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--branco); margin-bottom: 6px; }
+  .destaque-card p { font-size: 14px; color: var(--cinza-texto); line-height: 1.6; }
+
+  /* RESULTADOS */
+  #resultados { background: var(--preto); }
+  .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 60px; }
+  .result-card { background: var(--cinza-escuro); border: 1px solid var(--cinza-borda); border-radius: 12px; padding: 28px 24px; text-align: center; }
+  .result-card:first-child { border-color: rgba(244,80,10,0.4); }
+  .result-num { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; color: var(--laranja); letter-spacing: -0.03em; display: block; }
+  .result-desc { font-size: 14px; color: var(--cinza-texto); margin-top: 6px; line-height: 1.5; }
+  .depoimento { background: var(--cinza-escuro); border: 1px solid var(--cinza-borda); border-left: 3px solid var(--laranja); border-radius: 12px; padding: 32px 36px; max-width: 640px; }
+  .depoimento blockquote { font-size: 18px; font-style: italic; color: #D0C8C0; line-height: 1.7; font-weight: 300; margin-bottom: 20px; }
+  .depoimento cite { font-size: 14px; font-style: normal; color: var(--cinza-texto); }
+  .depoimento cite strong { color: var(--branco); font-weight: 500; }
+
+  /* COMO FUNCIONA */
+  #como-funciona { background: var(--cinza-escuro); }
+  .etapas { display: flex; flex-direction: column; gap: 0; max-width: 700px; }
+  .etapa { display: grid; grid-template-columns: 60px 1fr; gap: 28px; align-items: start; padding-bottom: 44px; position: relative; }
+  .etapa:not(:last-child)::after { content: ''; position: absolute; left: 29px; top: 52px; width: 1px; bottom: 0; background: var(--cinza-borda); }
+  .etapa-num { width: 60px; height: 60px; border-radius: 50%; background: var(--cinza-medio); border: 1px solid var(--cinza-borda); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px; color: var(--laranja); flex-shrink: 0; transition: background 0.2s, border-color 0.2s; }
+  .etapa:hover .etapa-num { background: rgba(244,80,10,0.15); border-color: var(--laranja); }
+  .etapa-body h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px; color: var(--branco); margin-bottom: 8px; padding-top: 16px; }
+  .etapa-body p { font-size: 15px; color: var(--cinza-texto); line-height: 1.65; }
+
+  /* FORMULÁRIO */
+  #inscricao { background: var(--preto); }
+  .form-wrapper { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+  .form-info h2 { font-size: clamp(28px, 4vw, 46px); }
+  .form-info p { font-size: 16px; color: var(--cinza-texto); line-height: 1.7; margin-bottom: 32px; }
+  .form-bullets { display: flex; flex-direction: column; gap: 12px; }
+  .form-bullet { display: flex; align-items: center; gap: 12px; font-size: 15px; color: #B0A89E; }
+  .form-bullet::before { content: ''; width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; background: rgba(244,80,10,0.15); border: 1px solid var(--laranja); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23F4500A' stroke-width='2'%3E%3Cpath d='M2 6l3 3 5-5'/%3E%3C/svg%3E"); background-size: 12px; background-position: center; background-repeat: no-repeat; }
+  form { background: var(--cinza-escuro); border: 1px solid var(--cinza-borda); border-radius: 16px; padding: 40px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .form-group label { font-size: 13px; font-weight: 500; color: #9A9087; letter-spacing: 0.02em; }
+  .form-group input, .form-group select, .form-group textarea { background: var(--cinza-medio); border: 1px solid var(--cinza-borda); border-radius: 8px; color: var(--branco); font-family: 'DM Sans', sans-serif; font-size: 15px; padding: 12px 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: #5A5550; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--laranja); }
+  .form-group select { appearance: none; cursor: pointer; }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit { width: 100%; padding: 16px; background: var(--laranja); color: var(--branco); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 4px; }
+  .form-submit:hover { background: var(--laranja-claro); transform: translateY(-1px); }
+  .form-privacidade { font-size: 12px; color: var(--cinza-texto); text-align: center; margin-top: 14px; line-height: 1.5; }
+  .form-success { display: none; text-align: center; padding: 40px 0; }
+  .form-success .check { width: 64px; height: 64px; border-radius: 50%; background: rgba(244,80,10,0.15); border: 2px solid var(--laranja); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+  .form-success h3 { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; color: var(--branco); margin-bottom: 10px; }
+  .form-success p { font-size: 15px; color: var(--cinza-texto); }
+
+  /* FOOTER */
+  footer { background: var(--cinza-escuro); border-top: 1px solid var(--cinza-borda); padding: 48px 6vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+  .footer-logo { display: flex; align-items: center; text-decoration: none; }
+  .footer-logo img { height: 48px; width: auto; }
+  .footer-by { font-size: 13px; color: var(--cinza-texto); margin-top: 4px; }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a { font-size: 14px; color: var(--cinza-texto); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--laranja-claro); }
+  .footer-copy { font-size: 12px; color: #5A5550; }
+
+  @media (max-width: 768px) {
+    nav { padding: 12px 5vw; }
+    .nav-logo img { height: 40px; }
+    #hero { padding: 120px 5vw 60px; }
+    .hero-logo-big img { height: 120px; }
+    .hero-stats { gap: 28px; }
+    .sobre-grid, .form-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    section { padding: 70px 5vw; }
+    .form-row { grid-template-columns: 1fr; }
+    form { padding: 28px 24px; }
+    footer { flex-direction: column; align-items: center; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="Arruma Meu POP">
+  </a>
+  <a href="#inscricao" class="btn-nav">Quero participar</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-logo-big">
+    <img src="logo.png" alt="Arruma Meu POP — Parte 02">
+  </div>
+  <div class="hero-tag">Temporada 2 — inscrições abertas</div>
+  <h1>Seu POP<br><em>nas mãos certas.</em></h1>
+  <p class="hero-sub">O projeto que já transformou a infraestrutura de provedores em todo o Brasil volta com uma nova temporada.</p>
+  <div class="hero-ctas">
+    <a href="#inscricao" class="btn-primary">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 1v10M9 1L5 5M9 1l4 4M1 13v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1"/></svg>
+      Inscrever meu provedor
+    </a>
+    <a href="#sobre" class="btn-secondary">Saiba mais ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">+30<span>×</span></span>
+      <span class="stat-label">provedores na temporada 1</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">5<span>+</span></span>
+      <span class="stat-label">estados atendidos</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100<span>%</span></span>
+      <span class="stat-label">de satisfação dos participantes</span>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-grid">
+    <div class="sobre-texto">
+      <div class="section-tag">O projeto</div>
+      <h2>O que é o <span>Arruma Meu POP?</span></h2>
+      <p>O <strong>Arruma Meu POP</strong> é um projeto da <strong>Loucos da Telecom</strong>, em parceria com empresas referência no mercado, criado para resolver o que mais impacta a operação de um provedor: <strong>o POP</strong>.</p>
+      <p>Selecionamos provedores de todo o Brasil para <strong>organizar, padronizar e evoluir a estrutura do ponto de presença</strong>, o verdadeiro coração da rede. Aqui não é só estética: é eficiência, controle e menos dor de cabeça no dia a dia técnico.</p>
+      <p>A <strong>Temporada 1</strong> mostrou na prática o impacto do projeto. Provedores de diferentes portes saíram de estruturas desorganizadas para operações muito mais profissionais, com melhora real na qualidade do serviço entregue ao cliente. Agora, a <strong>Temporada 2</strong> chega ainda mais estratégica: antes de qualquer intervenção física, você passa por uma <strong>consultoria completa</strong>, onde mapeamos os gargalos, identificamos riscos e definimos um plano de ação claro para transformar seu POP com precisão.</p>
+      <div style="margin-top: 32px;">
+        <div class="parceiros-label">Em parceria com</div>
+        <div class="parceiros-list">
+          <span class="parceiro-chip">Loucos da Telecom</span>
+          <span class="parceiro-chip">Grandes nomes do mercado</span>
+          <span class="parceiro-chip">Fabricantes e fornecedores homologados</span>
+        </div>
+      </div>
+    </div>
+    <div class="sobre-destaques">
+      <div class="destaque-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Consultoria antes da execução</h3>
+        <p>Novidade da Temporada 2: você recebe um diagnóstico completo do seu POP antes de qualquer intervenção.</p>
+      </div>
+      <div class="destaque-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Processo rápido e sem burocracia</h3>
+        <p>Da inscrição à execução, tudo pensado para ser ágil e eficiente, sem complicar o dia a dia do seu provedor.</p>
+      </div>
+      <div class="destaque-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Seleção criteriosa de provedores</h3>
+        <p>Vagas limitadas. Selecionamos provedores com perfil adequado para garantir o melhor resultado do projeto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section id="resultados">
+  <div class="section-tag">Temporada 1</div>
+  <h2>Resultados que <span>falam por si.</span></h2>
+  <p class="section-sub">Na primeira temporada provamos que funciona. Os números refletem o impacto real na infraestrutura dos provedores participantes.</p>
+  <div class="results-grid">
+    <div class="result-card">
+      <span class="result-num">30<span style="font-size:28px;color:var(--laranja-claro)">+</span></span>
+      <div class="result-desc">provedores com POP transformado</div>
+    </div>
+    <div class="result-card">
+      <span class="result-num">5<span style="font-size:28px;color:var(--laranja-claro)">+</span></span>
+      <div class="result-desc">estados brasileiros atendidos</div>
+    </div>
+    <div class="result-card">
+      <span class="result-num">100<span style="font-size:28px;color:var(--laranja-claro)">%</span></span>
+      <div class="result-desc">dos participantes recomendariam o projeto</div>
+    </div>
+    <div class="result-card">
+      <span class="result-num">T2</span>
+      <div class="result-desc">nova temporada com melhorias exclusivas</div>
+    </div>
+  </div>
+  <div class="depoimento">
+    <blockquote>"A organização do nosso POP mudou completamente depois do projeto. A equipe é extremamente técnica e o resultado superou as expectativas. Recomendo a todos os provedores do Brasil."</blockquote>
+    <cite><strong>Provedor participante</strong> — Temporada 1</cite>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="section-tag">Como funciona</div>
+  <h2>Do pop atual <span>ao POP organizado.</span></h2>
+  <p class="section-sub">Um processo transparente do início ao fim. Saiba exatamente o que esperar ao se inscrever.</p>
+  <div class="etapas">
+    <div class="etapa">
+      <div class="etapa-num">1</div>
+      <div class="etapa-body">
+        <h3>Inscrição</h3>
+        <p>Você preenche o formulário com informações sobre seu provedor: estrutura atual, porte, localização e seus principais desafios. Nossa equipe analisa e entra em contato.</p>
+      </div>
+    </div>
+    <div class="etapa">
+      <div class="etapa-num">2</div>
+      <div class="etapa-body">
+        <h3>Pré-seleção</h3>
+        <p>Nossa equipe analisa as inscrições e entra em contato apenas com os provedores selecionados para a próxima etapa.</p>
+      </div>
+    </div>
+    <div class="etapa">
+      <div class="etapa-num">3</div>
+      <div class="etapa-body">
+        <h3>Alinhamento inicial</h3>
+        <p>Realizamos uma reunião online para entender melhor o cenário, alinhar expectativas e organizar os próximos passos do projeto.</p>
+      </div>
+    </div>
+    <div class="etapa">
+      <div class="etapa-num">4</div>
+      <div class="etapa-body">
+        <h3>Consultoria + mão na massa</h3>
+        <p>Você passa por um diagnóstico completo do seu POP e, na sequência, nossa equipe executa a organização e padronização da estrutura.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<section id="inscricao">
+  <div class="form-wrapper">
+    <div class="form-info">
+      <div class="section-tag">Inscrições abertas</div>
+      <h2>Quero meu <span>POP na temporada 2.</span></h2>
+      <p>Preencha o formulário com as informações do seu provedor. Nossa equipe analisa e entra em contato para dar início ao processo de seleção.</p>
+      <div class="form-bullets">
+        <div class="form-bullet">Vagas limitadas — inscreva-se agora</div>
+        <div class="form-bullet">Consultoria gratuita inclusa no processo</div>
+        <div class="form-bullet">Provedores de todo o Brasil</div>
+        <div class="form-bullet">Sem compromisso até a seleção final</div>
+      </div>
+    </div>
+    <div>
+      <form id="form-inscricao" name="inscricao-arruma-pop" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="inscricao-arruma-pop">
+        <p style="display:none"><label>Não preencha: <input name="bot-field"></label></p>
+        <div class="form-success" id="form-success">
+          <div class="check">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#F4500A" stroke-width="2.5"><path d="M5 14l7 7 11-11"/></svg>
+          </div>
+          <h3>Inscrição recebida!</h3>
+          <p>Nossa equipe vai analisar os dados e entrar em contato em breve pelo WhatsApp ou e-mail informado.</p>
+        </div>
+        <div id="form-fields">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Seu nome *</label>
+              <input type="text" name="nome" placeholder="João Silva" required>
+            </div>
+            <div class="form-group">
+              <label>Nome do provedor *</label>
+              <input type="text" name="provedor" placeholder="NetVale Telecom" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>WhatsApp *</label>
+              <input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required>
+            </div>
+            <div class="form-group">
+              <label>E-mail *</label>
+              <input type="email" name="email" placeholder="joao@netvale.com.br" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Cidade *</label>
+              <input type="text" name="cidade" placeholder="São Paulo" required>
+            </div>
+            <div class="form-group">
+              <label>Estado *</label>
+              <select name="estado" required>
+                <option value="" disabled selected>Selecione</option>
+                <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+                <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+                <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+                <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+                <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+                <option>SP</option><option>SE</option><option>TO</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Porte do provedor (quantidade de clientes) *</label>
+            <select name="porte" required>
+              <option value="" disabled selected>Selecione o porte</option>
+              <option>Pequeno — até 500 clientes</option>
+              <option>Médio — 500 a 2.000 clientes</option>
+              <option>Grande — 2.000 a 10.000 clientes</option>
+              <option>Extra grande — acima de 10.000 clientes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Qual é o maior desafio do seu POP hoje?</label>
+            <textarea name="desafio" placeholder="Ex: cabos desorganizados, falta de identificação, rack lotado, ausência de documentação..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Enviar inscrição →</button>
+          <p class="form-privacidade">Seus dados são usados exclusivamente para o processo de seleção do projeto. Não compartilhamos com terceiros.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="#" class="footer-logo">
+      <img src="logo.png" alt="Arruma Meu POP">
+    </a>
+    <div class="footer-by">por Loucos da Telecom</div>
+  </div>
+  <div class="footer-links">
+    <a href="#sobre">O projeto</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#inscricao">Inscrições</a>
+  </div>
+  <div class="footer-copy">© 2025 Arruma Meu POP. Todos os direitos reservados.</div>
+</footer>
+
+<script>
+  document.getElementById('form-inscricao').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    })
+    .then(() => {
+      document.getElementById('form-fields').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    })
+    .catch(() => {
+      alert('Erro ao enviar. Tente novamente.');
+    });
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.destaque-card, .result-card, .etapa, .depoimento').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
