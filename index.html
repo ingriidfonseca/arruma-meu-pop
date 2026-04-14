@@ -316,75 +316,18 @@
         <div class="form-bullet">Sem compromisso até a seleção final</div>
       </div>
     </div>
-    <div>
-      <form id="form-inscricao" name="inscricao-arruma-pop" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="inscricao-arruma-pop">
-        <p style="display:none"><label>Não preencha: <input name="bot-field"></label></p>
-        <div class="form-success" id="form-success">
-          <div class="check">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#F4500A" stroke-width="2.5"><path d="M5 14l7 7 11-11"/></svg>
-          </div>
-          <h3>Inscrição recebida!</h3>
-          <p>Nossa equipe vai analisar os dados e entrar em contato em breve pelo WhatsApp ou e-mail informado.</p>
-        </div>
-        <div id="form-fields">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Seu nome *</label>
-              <input type="text" name="nome" placeholder="João Silva" required>
-            </div>
-            <div class="form-group">
-              <label>Nome do provedor *</label>
-              <input type="text" name="provedor" placeholder="NetVale Telecom" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>WhatsApp *</label>
-              <input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required>
-            </div>
-            <div class="form-group">
-              <label>E-mail *</label>
-              <input type="email" name="email" placeholder="joao@netvale.com.br" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Cidade *</label>
-              <input type="text" name="cidade" placeholder="São Paulo" required>
-            </div>
-            <div class="form-group">
-              <label>Estado *</label>
-              <select name="estado" required>
-                <option value="" disabled selected>Selecione</option>
-                <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
-                <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
-                <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
-                <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
-                <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
-                <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
-                <option>SP</option><option>SE</option><option>TO</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Porte do provedor (quantidade de clientes) *</label>
-            <select name="porte" required>
-              <option value="" disabled selected>Selecione o porte</option>
-              <option>Pequeno — até 500 clientes</option>
-              <option>Médio — 500 a 2.000 clientes</option>
-              <option>Grande — 2.000 a 10.000 clientes</option>
-              <option>Extra grande — acima de 10.000 clientes</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Qual é o maior desafio do seu POP hoje?</label>
-            <textarea name="desafio" placeholder="Ex: cabos desorganizados, falta de identificação, rack lotado, ausência de documentação..."></textarea>
-          </div>
-          <button type="submit" class="form-submit">Enviar inscrição →</button>
-          <p class="form-privacidade">Seus dados são usados exclusivamente para o processo de seleção do projeto. Não compartilhamos com terceiros.</p>
-        </div>
-      </form>
+    <div style="background: var(--cinza-escuro); border: 1px solid var(--cinza-borda); border-radius: 16px; padding: 40px; min-height: 400px;">
+      <iframe src="https://tally.so/embed/ob7P6V?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy"
+        width="100%"
+        height="600"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Inscrição Arruma Meu POP"
+        style="border: none; display: block;">
+      </iframe>
+      <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
     </div>
   </div>
 </section>
