@@ -85,15 +85,6 @@
 
   /* RESULTADOS */
   #resultados { background: var(--preto); }
-  .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 60px; }
-  .result-card { background: var(--cinza-escuro); border: 1px solid var(--cinza-borda); border-radius: 12px; padding: 28px 24px; text-align: center; }
-  .result-card:first-child { border-color: rgba(244,80,10,0.4); }
-  .result-num { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; color: var(--laranja); letter-spacing: -0.03em; display: block; }
-  .result-desc { font-size: 14px; color: var(--cinza-texto); margin-top: 6px; line-height: 1.5; }
-  .depoimento { background: var(--cinza-escuro); border: 1px solid var(--cinza-borda); border-left: 3px solid var(--laranja); border-radius: 12px; padding: 32px 36px; max-width: 640px; }
-  .depoimento blockquote { font-size: 18px; font-style: italic; color: #D0C8C0; line-height: 1.7; font-weight: 300; margin-bottom: 20px; }
-  .depoimento cite { font-size: 14px; font-style: normal; color: var(--cinza-texto); }
-  .depoimento cite strong { color: var(--branco); font-weight: 500; }
 
   /* COMO FUNCIONA */
   #como-funciona { background: var(--cinza-escuro); }
@@ -184,16 +175,16 @@
   </div>
   <div class="hero-stats">
     <div class="stat-item">
-      <span class="stat-num">+30<span>×</span></span>
-      <span class="stat-label">provedores na temporada 1</span>
+      <span class="stat-num">12<span>+</span></span>
+      <span class="stat-label">POPs transformados na temporada 1</span>
     </div>
     <div class="stat-item">
-      <span class="stat-num">5<span>+</span></span>
-      <span class="stat-label">estados atendidos</span>
+      <span class="stat-num">6<span>+</span></span>
+      <span class="stat-label">estados brasileiros atendidos</span>
     </div>
     <div class="stat-item">
-      <span class="stat-num">100<span>%</span></span>
-      <span class="stat-label">de satisfação dos participantes</span>
+      <span class="stat-num">T<span>2</span></span>
+      <span class="stat-label">nova temporada com consultoria inclusa</span>
     </div>
   </div>
 </section>
@@ -236,34 +227,7 @@
   </div>
 </section>
 
-<!-- RESULTADOS -->
-<section id="resultados">
-  <div class="section-tag">Temporada 1</div>
-  <h2>Resultados que <span>falam por si.</span></h2>
-  <p class="section-sub">Na primeira temporada provamos que funciona. Os números refletem o impacto real na infraestrutura dos provedores participantes.</p>
-  <div class="results-grid">
-    <div class="result-card">
-      <span class="result-num">30<span style="font-size:28px;color:var(--laranja-claro)">+</span></span>
-      <div class="result-desc">provedores com POP transformado</div>
-    </div>
-    <div class="result-card">
-      <span class="result-num">5<span style="font-size:28px;color:var(--laranja-claro)">+</span></span>
-      <div class="result-desc">estados brasileiros atendidos</div>
-    </div>
-    <div class="result-card">
-      <span class="result-num">100<span style="font-size:28px;color:var(--laranja-claro)">%</span></span>
-      <div class="result-desc">dos participantes recomendariam o projeto</div>
-    </div>
-    <div class="result-card">
-      <span class="result-num">T2</span>
-      <div class="result-desc">nova temporada com melhorias exclusivas</div>
-    </div>
-  </div>
-  <div class="depoimento">
-    <blockquote>"A organização do nosso POP mudou completamente depois do projeto. A equipe é extremamente técnica e o resultado superou as expectativas. Recomendo a todos os provedores do Brasil."</blockquote>
-    <cite><strong>Provedor participante</strong> — Temporada 1</cite>
-  </div>
-</section>
+
 
 <!-- COMO FUNCIONA -->
 <section id="como-funciona">
@@ -378,7 +342,7 @@
       if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.destaque-card, .result-card, .etapa, .depoimento').forEach(el => {
+  document.querySelectorAll('.destaque-card, .etapa').forEach(el => {
     el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     observer.observe(el);
